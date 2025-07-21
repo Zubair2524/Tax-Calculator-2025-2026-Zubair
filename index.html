@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan Salary & Business Tax Calculator 2025-2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M29Q5JXN');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7MGC04K0RW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7MGC04K0RW');
+    </script>
+    <style>
+        .rainbow {
+            height: 12px;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 1400% 1400%;
+            animation: rainbow 10s ease infinite;
+        }
+        .rainbow-glow {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 1400% 1400%;
+            animation: rainbow 10s ease infinite;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+        .rainbow-glow:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 0, 0, 0.7);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen w-full p-4 sm:p-6">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M29Q5JXN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg sm:max-w-xl md:max-w-2xl">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-6">Pakistan Salary & Business Tax Calculator 2025-2026</h1>
+        <div class="flex justify-center mb-4 sm:mb-6">
+            <button id="calcTaxBtn" class="px-3 py-2 sm:px-4 sm:py-2 text-base sm:text-lg rainbow-glow rounded-l-lg focus:outline-none">Calculate Tax</button>
+            <button id="calcSalaryBtn" class="px-3 py-2 sm:px-4 sm:py-2 text-base sm:text-lg bg-gray-300 text-gray-800 rounded-r-lg hover:bg-gray-400 focus:outline-none">Calculate Salary</button>
+        </div>
+        <div class="rainbow mb-4 sm:mb-6"></div>
+        <div class="mb-4 sm:mb-6">
+            <label for="incomeType" class="block text-base sm:text-lg font-medium text-gray-700">Income Type</label>
+            <select id="incomeType" class="mt-1 block w-full p-2 sm:p-3 text-base sm:text-lg border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                <option value="salaried">Salaried</option>
+                <option value="business">Business</option>
+            </select>
+        </div>
+        <div class="mb-4 sm:mb-6">
+            <label for="timePeriod" class="block text-base sm:text-lg font-medium text-gray-700">Time Period</label>
+            <select id="timePeriod" class="mt-1 block w-full p-2 sm:p-3 text-base sm:text-lg border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                <option value="monthly">Monthly</option>
+                <option value="annual">Annual</option>
+            </select>
+        </div>
+        <div id="calcTaxForm" class="space-y-4 sm:space-y-6">
+            <div>
+                <label for="salaryInput" class="block text-base sm:text-lg font-medium text-gray-700">Monthly Income (PKR)</label>
+                <input type="number" id="salaryInput" class="mt-1 block w-full p-2 sm:p-3 text-base sm:text-lg border rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Enter monthly income" min="0">
+            </div>
+            <div id="taxResult" class="text-center text-lg sm:text-xl md:text-2xl"></div>
+            <div id="slabDetails" class="text-sm sm:text-base border border-gray-300 rounded-lg p-4 bg-gray-50 fade-in hidden"></div>
+        </div>
+        <div id="calcSalaryForm" class="space-y-4 sm:space-y-6 hidden">
+            <div>
+                <label for="taxInput" class="block text-base sm:text-lg font-medium text-gray-700">Monthly Tax (PKR)</label>
+                <input type="number" id="taxInput" class="mt-1 block w-full p-2 sm:p-3 text-base sm:text-lg border rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Enter monthly tax" min="0">
+            </div>
+            <div id="salaryResult" class="text-center text-lg sm:text-xl md:text-2xl"></div>
+        </div>
+        <p class="text-sm sm:text-base text-gray-500 text-center mt-4 sm:mt-6">REMEMBER IN YOUR PRAYERS - ZUBAIR AHMAD</p>
+        <p class="text-xs sm:text-sm text-gray-500 text-center mt-2">Note: For precise tax calculations, consult a tax professional, as this tool provides estimates based on the 2025-2026 tax slabs for individuals (salaried or business).</p>
+    </div>
+
+    <script>
+        // Tax slabs for 2025-2026 (annual, same for salaried and business individuals)
+        const taxSlabs = [
+            { min: 0, max: 600000, rate: 0, fixed: 0, description: "Up to PKR 600,000: 0% tax" },
+            { min: 600000, max: 1200000, rate: 0.01, fixed: 0, description: "PKR 600,001 - 1,200,000: 1% on amount exceeding PKR 600,000" },
+            { min: 1200000, max: 2200000, rate: 0.11, fixed: 6000, description: "PKR 1,200,001 - 2,200,000: PKR 6,000 + 11% on amount exceeding PKR 1,200,000" },
+            { min: 2200000, max: 3200000, rate: 0.23, fixed: 116000, description: "PKR 2,200,001 - 3,200,000: PKR 116,000 + 23% on amount exceeding PKR 2,200,000" },
+            { min: 3200000, max: 4100000, rate: 0.30, fixed: 346000, description: "PKR 3,200,001 - 4,100,000: PKR 346,000 + 30% on amount exceeding PKR 3,200,000" },
+            { min: 4100000, max: Infinity, rate: 0.35, fixed: 616000, description: "Above PKR 4,100,000: PKR 616,000 + 35% on amount exceeding PKR 4,100,000" }
+        ];
+
+        // Calculate annual tax and return slab details
+        function calculateAnnualTax(annualIncome) {
+            let tax = 0;
+            let slabDetail = '';
+            for (const slab of taxSlabs) {
+                if (annualIncome > slab.min && annualIncome <= slab.max) {
+                    const taxableAmount = annualIncome - slab.min;
+                    const variableTax = slab.rate * taxableAmount;
+                    tax = slab.fixed + variableTax;
+                    slabDetail = `
+                        <p><strong>Applicable Slab:</strong> ${slab.description}</p>
+                        <p><strong>Calculation:</strong></p>
+                        <ul class="list-disc list-inside">
+                            <li>Annual Income: PKR ${annualIncome.toFixed(2)}</li>
+                            <li>Taxable Amount (Income - PKR ${slab.min}): PKR ${taxableAmount.toFixed(2)}</li>
+                            <li>Variable Tax (${(slab.rate * 100)}% of Taxable Amount): PKR ${variableTax.toFixed(2)}</li>
+                            <li>Fixed Tax: PKR ${slab.fixed.toFixed(2)}</li>
+                            <li>Total Annual Tax: PKR ${tax.toFixed(2)}</li>
+                            <li>Monthly Tax: PKR ${(tax / 12).toFixed(2)}</li>
+                        </ul>
+                    `;
+                    break;
+                }
+            }
+            return { tax, slabDetail };
+        }
+
+        // Convert income to monthly tax
+        function calculateMonthlyTax(income, isAnnual) {
+            const annualIncome = isAnnual ? income : income * 12;
+            const result = calculateAnnualTax(annualIncome);
+            return { monthlyTax: result.tax / 12, slabDetail: result.slabDetail };
+        }
+
+        // Estimate income from tax (using binary search)
+        function calculateIncomeFromTax(tax, isAnnual) {
+            const targetAnnualTax = isAnnual ? tax : tax * 12;
+            let low = 0, high = 10000000; // Reasonable income range
+            let estimatedIncome = 0;
+            const precision = 0.01;
+
+            while (low <= high) {
+                const mid = (low + high) / 2;
+                const midTax = calculateAnnualTax(mid).tax;
+                if (Math.abs(midTax - targetAnnualTax) < precision) {
+                    estimatedIncome = mid;
+                    break;
+                } else if (midTax < targetAnnualTax) {
+                    low = mid + 0.01;
+                } else {
+                    high = mid - 0.01;
+                }
+            }
+
+            return isAnnual ? estimatedIncome : estimatedIncome / 12;
+        }
+
+        // DOM elements
+        const calcTaxBtn = document.getElementById('calcTaxBtn');
+        const calcSalaryBtn = document.getElementById('calcSalaryBtn');
+        const calcTaxForm = document.getElementById('calcTaxForm');
+        const calcSalaryForm = document.getElementById('calcSalaryForm');
+        const incomeType = document.getElementById('incomeType');
+        const timePeriod = document.getElementById('timePeriod');
+        const salaryInput = document.getElementById('salaryInput');
+        const taxInput = document.getElementById('taxInput');
+        const taxResult = document.getElementById('taxResult');
+        const salaryResult = document.getElementById('salaryResult');
+        const slabDetails = document.getElementById('slabDetails');
+
+        // Toggle between forms
+        calcTaxBtn.addEventListener('click', () => {
+            calcTaxForm.classList.remove('hidden');
+            calcSalaryForm.classList.add('hidden');
+            calcTaxBtn.classList.add('rainbow-glow');
+            calcTaxBtn.classList.remove('bg-gray-300', 'text-gray-800');
+            calcSalaryBtn.classList.add('bg-gray-300', 'text-gray-800');
+            calcSalaryBtn.classList.remove('rainbow-glow');
+            salaryInput.value = '';
+            taxResult.innerHTML = '';
+            slabDetails.classList.add('hidden');
+        });
+
+        calcSalaryBtn.addEventListener('click', () => {
+            calcSalaryForm.classList.remove('hidden');
+            calcTaxForm.classList.add('hidden');
+            calcSalaryBtn.classList.add('rainbow-glow');
+            calcSalaryBtn.classList.remove('bg-gray-300', 'text-gray-800');
+            calcTaxBtn.classList.add('bg-gray-300', 'text-gray-800');
+            calcTaxBtn.classList.remove('rainbow-glow');
+            taxInput.value = '';
+            salaryResult.innerHTML = '';
+        });
+
+        // Update labels based on income type and time period
+        function updateLabels() {
+            const isAnnual = timePeriod.value === 'annual';
+            const incomeLabel = incomeType.value === 'salaried' 
+                ? (isAnnual ? 'Annual Salary (PKR)' : 'Monthly Salary (PKR)') 
+                : (isAnnual ? 'Annual Business Income (PKR)' : 'Monthly Business Income (PKR)');
+            const taxLabel = isAnnual ? 'Annual Tax (PKR)' : 'Monthly Tax (PKR)';
+            document.querySelector('label[for="salaryInput"]').textContent = incomeLabel;
+            document.querySelector('label[for="taxInput"]').textContent = taxLabel;
+            salaryInput.placeholder = `Enter ${incomeLabel.toLowerCase()}`;
+            taxInput.placeholder = `Enter ${taxLabel.toLowerCase()}`;
+        }
+
+        incomeType.addEventListener('change', updateLabels);
+        timePeriod.addEventListener('change', () => {
+            updateLabels();
+            salaryInput.value = '';
+            taxInput.value = '';
+            taxResult.innerHTML = '';
+            salaryResult.innerHTML = '';
+            slabDetails.classList.add('hidden');
+        });
+
+        // Calculate tax on income input
+        salaryInput.addEventListener('input', () => {
+            const income = parseFloat(salaryInput.value) || 0;
+            const isAnnual = timePeriod.value === 'annual';
+            if (income < 0) {
+                taxResult.innerHTML = '<p class="text-red-500 fade-in">Please enter a valid income.</p>';
+                slabDetails.classList.add('hidden');
+                return;
+            }
+            const { monthlyTax, slabDetail } = calculateMonthlyTax(income, isAnnual);
+            const netIncome = isAnnual ? (income - monthlyTax * 12).toFixed(2) : (income - monthlyTax).toFixed(2);
+            const taxDisplay = isAnnual ? (monthlyTax * 12).toFixed(2) : monthlyTax.toFixed(2);
+            const period = isAnnual ? 'Annual' : 'Monthly';
+            taxResult.innerHTML = `
+                <p class="text-green-500 font-bold fade-in">${period} Tax: PKR ${taxDisplay}</p>
+                <p class="text-blue-500 font-bold fade-in">Net ${period} Income: PKR ${netIncome}</p>
+            `;
+            slabDetails.innerHTML = slabDetail;
+            slabDetails.classList.remove('hidden');
+        });
+
+        // Calculate income from tax input
+        taxInput.addEventListener('input', () => {
+            const tax = parseFloat(taxInput.value) || 0;
+            const isAnnual = timePeriod.value === 'annual';
+            if (tax < 0) {
+                salaryResult.innerHTML = '<p class="text-red-500 fade-in">Please enter a valid tax amount.</p>';
+                return;
+            }
+            const estimatedIncome = calculateIncomeFromTax(tax, isAnnual).toFixed(2);
+            const period = isAnnual ? 'Annual' : 'Monthly';
+            salaryResult.innerHTML = `
+                <p class="text-blue-500 font-bold fade-in">Estimated ${period} Income: PKR ${estimatedIncome}</p>
+            `;
+        });
+
+        // Initialize labels
+        updateLabels();
+    </script>
+</body>
+</html>
